@@ -25,9 +25,12 @@ public:
     void set_color(string c) { color = c; }
     string get_color() const { return color; }
 
-    // Overloaded < operator for std::list sorting
+    // Overloaded < operator for std::set sorting and uniqueness
     bool operator<(const Goat &other) const {
-        return name < other.name;
+        // Comparison based on name, then age, then color to ensure uniqueness
+        if (name != other.name) return name < other.name;
+        if (age != other.age) return age < other.age;
+        return color < other.color;
     }
 
     // Display function for Goat
